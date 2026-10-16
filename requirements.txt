@@ -1,11 +1,5 @@
-# ===== Personal AI Assistant - Dependencies =====
-# Phase 1 - Basic Setup (No Memory)
-
-fastapi==0.115.0
-uvicorn==0.32.0
 python-dotenv==1.0.1
 pyyaml==6.0.2
 requests==2.32.3
-pydantic==2.9.2
 langdetect==1.0.9
 edge-tts==6.1.12
