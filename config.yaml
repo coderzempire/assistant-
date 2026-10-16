@@ -1,74 +1,34 @@
-# ===== Tumhare AI Assistant ki Settings =====
-# Yahan se sab kuch customize kar sakte ho
-
-assistant:
-  name: "Madam"              # 👈 Apna pasandida naam likho
-  gender: "female"
-  persona: "caring, sweet, loving, protective"
-  language_mode: "hinglish"   # hindi | english | hinglish
-
-# ===== Voice Options (6 Sweet Indian Female Voices) =====
-voice:
-  current: "Madam"
-  rate: "+0%"
-  pitch: "+0Hz"
-  volume: "+0%"
-
-available_voices:
-  - id: "Khushi"
-    name: "Khushi"
-    code: "hi-IN-SwaraNeural"
-    style: "Sweet, natural Hindi female - sabse soft aur pyari"
-
-  - id: "ananya"
-    name: "Ananya"
-    code: "hi-IN-AnanyaNeural"
-    style: "Young, fresh Hindi female - modern ladki jaisi"
-
-  - id: "Isha"
-    name: "Isha"
-    code: "en-IN-NeerjaNeural"
-    style: "Indian English female - professional + warm"
-
-  - id: "Isha_expressive"
-    name: "Isha Expressive"
-    code: "en-IN-NeerjaExpressiveNeural"
-    style: "Emotional, expressive English female - feelings wali"
-
-  - id: "kavya"
-    name: "Kavya"
-    code: "hi-IN-KavyaNeural"
-    style: "Soft spoken Hindi female - maa jaisi mamta"
-
-  - id: "aarohi"
-    name: "Aarohi"
-    code: "mr-IN-AarohiNeural"
-    style: "Melodious Indian female - gaane jaisi awaaz"
-
-# ===== Image Options (6 Animated Indian Female Characters) =====
+# ===== Image Options =====
 avatar:
   current: "aria_default"
+  path: "images/aria.png"
   options:
     - id: "aria_default"
       name: "Aria"
+      path: "images/aria.png"
       look: "Long black hair, big brown eyes, dupatta, warm smile"
 
     - id: "meera"
       name: "Meera"
+      path: "images/meera.png"
       look: "Short bob hair, glasses, kurti, cute dimples"
 
-    - id: "Risha"
-      name: "Risha"
+    - id: "isha"
+      name: "Isha"
+      path: "images/isha.png"
       look: "Wavy hair, bindi, nose ring, traditional saree"
 
     - id: "riya"
       name: "Riya"
+      path: "images/riya.png"
       look: "Ponytail, hoodie, jeans, modern college girl"
 
-    - id: "Tine"
-      name: "tine"
+    - id: "tara"
+      name: "Tara"
+      path: "images/tara.png"
       look: "Long braid, maang tikka, lehenga, royal look"
 
     - id: "zoya"
       name: "Zoya"
+      path: "images/zoya.png"
       look: "Curly hair, kurti, silver jhumka, sparkling eyes"
