@@ -1,3 +1,49 @@
+# ===== Tumhare AI Assistant ki Settings =====
+assistant:
+  name: "Madam"              # 👈 Apna pasandida naam likho
+  gender: "female"
+  persona: "caring, sweet, loving, protective"
+  language_mode: "hinglish"
+
+# ===== Voice Options =====
+voice:
+  current: "swara"
+  rate: "+0%"
+  pitch: "+0Hz"
+  volume: "+0%"
+
+available_voices:
+  - id: "swara"
+    name: "Swara"
+    code: "hi-IN-SwaraNeural"
+    style: "Sweet, natural Hindi female"
+
+  - id: "ananya"
+    name: "Ananya"
+    code: "hi-IN-AnanyaNeural"
+    style: "Young, fresh Hindi female"
+
+  - id: "neerja"
+    name: "Neerja"
+    code: "en-IN-NeerjaNeural"
+    style: "Indian English female"
+
+  - id: "neerja_expressive"
+    name: "Neerja Expressive"
+    code: "en-IN-NeerjaExpressiveNeural"
+    style: "Emotional, expressive English female"
+
+  - id: "kavya"
+    name: "Kavya"
+    code: "hi-IN-KavyaNeural"
+    style: "Soft spoken Hindi female"
+
+  - id: "aarohi"
+    name: "Aarohi"
+    code: "mr-IN-AarohiNeural"
+    style: "Melodious Indian female"
+
+# ===== Image Options =====
 avatar:
   current: "aria_default"
   path: "images/aria.png"
