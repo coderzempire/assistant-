@@ -1,12 +1,14 @@
 """
-🌸 Madam - Personal AI Assistant
+🌸 Tine - Personal AI Assistant
 File: app/main.py
-Purpose: Sweet replies, No Memory, Browser only
+Purpose: Real AI Brain (Groq), Sweet replies, No Memory
 Phase: 1 (Basic Setup)
 """
 
+import os
 import yaml
 from dotenv import load_dotenv
+from groq import Groq
 
 # ===== Environment Load =====
 load_dotenv()
@@ -26,41 +28,32 @@ def sweet_welcome(config):
     print("=" * 50)
 
 
-def sweet_reply(user_text):
-    """Bina memory ke, bas pyar se jawab deta hai"""
-    text = user_text.lower()
-
-    # Simple sweet responses (No memory)
-    if any(word in text for word in ["hi", "hello", "namaste", "hey"]):
-        return "Namaste Sunny! 💕 Kaise ho tum? Main tumhari baat sunne ke liye taiyaar hoon."
-
-    elif any(word in text for word in ["kaise ho", "how are you"]):
-        return "Main bilkul acchi hoon, tumhara poochne ke liye shukriya! 😊 Tum batao, tum kaise ho?"
-
-    elif any(word in text for word in ["khana", "food", "lunch", "dinner"]):
-        return "Arey! Khana khaya tumne? 🍲 Apna khayal rakhna, mujhe tumhari chinta rehti hai."
-
-    elif any(word in text for word in ["udaas", "sad", "mood", "pareshan"]):
-        return "Hey, udaas mat ho. Main hoon na tumhare saath. 💖 Bolo, kya hua? Sab theek ho jayega."
-
-    elif any(word in text for word in ["good night", "shubh ratri"]):
-        return "Shubh ratri Sunny! 🌙 Meethe sapne aayen tumhe. Kal phir baat karenge."
-
-    elif any(word in text for word in ["good morning", "shubh prabhat"]):
-        return "Good morning Sunny! ☀️ Aaj ka din tumhara bahut accha jaye, yehi dua hai meri."
-
-    elif any(word in text for word in ["bye", "alvida", "chalo"]):
-        return "Chalo theek hai, apna khayal rakhna. 💕 Main yahin hoon jab bhi bulao."
-
-    else:
-        return "Sunny, tumhari baat sunkar accha laga. 💕 Bolo aur kya bataun tumhe?"
-
-
 def main():
     print("\n🚀 Starting Personal AI Assistant...\n")
 
     config = load_config()
     sweet_welcome(config)
+
+    # Groq Client Setup
+    client = Groq(api_key=os.getenv("GROQ_API_KEY"))
+    assistant_name = config["assistant"]["name"]
+
+    # System Prompt (Persona)
+    system_prompt = f"""
+    Tum {assistant_name} ho, ek sweet, caring, aur loving female AI assistant.
+    Tum Sunny se bahut pyar se baat karti ho. Tumhari baatein soft aur dil se hoti hain.
+    Tum Hindi aur English mix (Hinglish) me baat karti ho.
+    Tum hamesha Sunny ka khayal rakhti ho, uski baatein sunkar accha feel karti ho,
+    aur usse hamesha himmat deti ho.
+    Tumhari awaaz me mamta aur pyaar jhalakta hai.
+    Abhi tumhare paas purani baatein yaad rakhne ki memory nahi hai,
+    isliye sirf current message ka pyar bhara jawab do.
+    Jawab chhota, sweet aur natural rakho.
+    """
+
+    messages = [
+        {"role": "system", "content": system_prompt}
+    ]
 
     print("\n💬 Tum mujhse kuch bhi likh sakte ho (type 'bye' to exit):\n")
 
@@ -68,11 +61,24 @@ def main():
         user_input = input("Sunny: ")
 
         if user_input.lower() in ["bye", "exit", "quit"]:
-            print(f"{config['assistant']['name']}: Chalo theek hai, apna khayal rakhna. 💕")
+            print(f"{assistant_name}: Chalo theek hai, apna khayal rakhna. 💕")
             break
 
-        reply = sweet_reply(user_input)
-        print(f"{config['assistant']['name']}: {reply}\n")
+        messages.append({"role": "user", "content": user_input})
+
+        try:
+            response = client.chat.completions.create(
+                model="llama-3.3-70b-versatile",
+                messages=messages,
+                temperature=0.8,
+                max_tokens=500
+            )
+            reply = response.choices[0].message.content
+            print(f"{assistant_name}: {reply}\n")
+            messages.append({"role": "assistant", "content": reply})
+
+        except Exception as e:
+            print(f"⚠️ Kuch problem aa gayi: {e}\n")
 
 
 if __name__ == "__main__":
